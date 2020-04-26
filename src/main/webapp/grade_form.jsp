@@ -24,18 +24,24 @@
 <jsp:include page="/menu.jsp"/>
 <br/>
 <%--formularz zawiera 3 pola: ocena, przedmiot i identyfikator studenta któremu dodajemy ocenę. --%>
-<form action="/grade/add" method="post">
+
+
+
+<%--formularz zawiera 3 pola: ocena, przedmiot i identyfikator studenta któremu dodajemy ocenę. --%>
+<%--gdy dodaje ocene, chce wysłać ją na servlet /grade/add--%>
+<%--gdy edytuje ocene, chce wysłać ją na servlet /grade/edit--%>
+<%--jeśli requestScope.gradeToEdit==null - to oznacza że nie edytuje oceny--%>
+<form action="${ requestScope.gradeToEdit == null ? '/grade/add' : '/grade/edit' }" method="post">
     <input type="hidden" name="studentGraded" value="<c:out value="${requestScope.student_identifier}"/>">
+    <input type="hidden" name="editedGrade" value="${requestScope.gradeToEdit.id}">
     Przedmiot:
     <select name="przedmiot">
-        <option value="J_POLSKI">Język Polski</option>
-        <option value="J_ANGIELSKI">Język Angielski</option>
-        <option value="INFORMATYKA">Języki programowania</option>
-        <option value="MATEMATYKA">Matematyka</option>
-        <option value="RELIGIA">Religia</option>
+        <c:forEach var="przed" items="${requestScope.przedmioty}">
+            <option value="${przed}" ${przed == requestScope.gradeToEdit.przedmiot ? 'selected': ''} >${przed.opis}</option>
+        </c:forEach>
     </select>
     <br/>
-    Ocena: <input type="number" name="ocena" step="0.5" min="1" max="6"/>
+    Ocena: <input type="number" step="0.5" min="1" max="6" name="ocena" value="${requestScope.gradeToEdit.ocena}"/>
     <br/>
     <input type="submit">
 </form>

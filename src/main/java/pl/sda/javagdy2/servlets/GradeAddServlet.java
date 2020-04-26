@@ -25,6 +25,10 @@ public class GradeAddServlet extends HttpServlet {
             return;
         }
         req.setAttribute("student_identifier", studentId);
+
+        // wysyłamy na widok listę wszystkich dostępnych przedmiotów,
+        // żeby były dostępne na liście rozwijanej.
+        req.setAttribute("przedmioty", Przedmiot.values());
         // chcemy wyświetlić użytkownikowi formularz dodawania nowej oceny
         req.getRequestDispatcher("/grade_form.jsp").forward(req, resp);
 
