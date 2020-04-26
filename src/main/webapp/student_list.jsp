@@ -38,6 +38,7 @@
         <td class="td_item">18+</td>
         <td class="td_item">wzrost</td>
         <td class="td_item">/student/delete</td>
+        <td class="td_item">/student/detail</td>
     </thead>
 
     <tbody> <%-- JSTL --%>
@@ -50,6 +51,9 @@
             <td class="td_item"><c:out value="${student.wzrost}"/></td>
             <td class="td_item">
                 <a href="/student/delete?identToDelete=<c:out value="${student.id}"/>">delete</a>
+            </td>
+            <td class="td_item">
+                <a href="/student/detail?identifier=<c:out value="${student.id}"/>">Szczegoly</a>
             </td>
         </tr>
     </c:forEach>

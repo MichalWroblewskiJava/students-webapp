@@ -19,5 +19,6 @@
         </property> <!-- hibernate to data definition language - polityka generowania tabel -->
         <property name="show_sql">true</property>
         <mapping class="pl.sda.javagdy2.database.model.Student"/>
+        <mapping class="pl.sda.javagdy2.database.model.Grade"/>
     </session-factory>
 </hibernate-configuration>
