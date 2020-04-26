@@ -35,7 +35,7 @@
         <option value="RELIGIA">Religia</option>
     </select>
     <br/>
-    Ocena: <input type="number" name="ocena"/>
+    Ocena: <input type="number" name="ocena" step="0.5" min="1" max="6"/>
     <br/>
     <input type="submit">
 </form>

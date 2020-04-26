@@ -45,6 +45,7 @@
 <%--Link do strony dodawania ocen - możemy przesłać dane o studencie.--%>
 <a href="/grade/add?studentId=<c:out value="${requestScope.studentDetails.id}"/>">Dodaj ocenę (temu studentowi)</a>
 
+<br/>
 
 
 <table style="border: 1px solid">

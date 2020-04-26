@@ -1,6 +1,11 @@
 package pl.sda.javagdy2.servlets;
 
 
+import pl.sda.javagdy2.database.EntityDao;
+import pl.sda.javagdy2.database.model.Grade;
+import pl.sda.javagdy2.database.model.Przedmiot;
+import pl.sda.javagdy2.database.model.Student;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +32,31 @@ public class GradeAddServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
+        String ocenaString = req.getParameter("ocena");
+        String przedmiotString = req.getParameter("przedmiot");
+        // jeśli którykolwiek z parametrów jest pusty, to przekieruj na stronę lista studentów
+        if (ocenaString == null || przedmiotString == null || ocenaString.isEmpty() || przedmiotString.isEmpty()) {
+            resp.sendRedirect("/student/list");
+            return;
+        }
+        Przedmiot gradePrzedmiot = Przedmiot.valueOf(przedmiotString);
+        double gradeOcena = Double.parseDouble(ocenaString);
+        // na podstawie wartości dwóch pól tworzymy obiekt ocene.
+        Grade grade = new Grade(gradePrzedmiot, gradeOcena);
+        // brakuje nam wyłącznie stworzenia relacji.
+        String studentId = req.getParameter("studentGraded");
+        if (studentId == null || studentId.isEmpty()) {
+            resp.sendRedirect("/student/list");
+            return;
+        }
+        Long studentIdLong = Long.parseLong(studentId);
+        EntityDao dao = new EntityDao();
+        Student student = dao.getById(Student.class, studentIdLong);
+        // stworzenie relacji bazodanowej
+        grade.setStudent(student);
+        // zapisanie do bazy
+        dao.saveOrUpdate(grade);
+        // przekierowanie na stronę ze szczegółami studenta.
+        resp.sendRedirect("/student/detail?identifier=" + studentId);
     }
 }
