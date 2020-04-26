@@ -13,6 +13,10 @@
 <html>
 <head>
     <title>Student details</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
 <h1>Detailed information about a student with id: <c:out value="${requestScope.studentDetails.id}"/></h1>
@@ -37,22 +41,28 @@
     </tr>
 </table>
 <br/>
+
+<%--Link do strony dodawania ocen - możemy przesłać dane o studencie.--%>
+<a href="/grade/add?studentId=<c:out value="${requestScope.studentDetails.id}"/>">Dodaj ocenę (temu studentowi)</a>
+
+
+
 <table style="border: 1px solid">
     <thead>
     <tr>
-        <td>Id</td>
-        <td>Przedmiot</td>
-        <td>Ocena</td>
-        <td>Data dodania</td>
+        <td class="td_item">Id</td>
+        <td class="td_item">Przedmiot</td>
+        <td class="td_item">Ocena</td>
+        <td class="td_item">Data dodania</td>
     </tr>
     </thead>
     <tbody>
     <c:forEach var="ocena" items="${requestScope.studentDetails.gradeList}">
         <tr>
-            <td><c:out value="${ocena.id}"/></td>
-            <td><c:out value="${ocena.przedmiot}"/></td>
-            <td><c:out value="${ocena.ocena}"/></td>
-            <td><c:out value="${ocena.dataDodania}"/></td>
+            <td class="td_item"><c:out value="${ocena.id}"/></td>
+            <td class="td_item"><c:out value="${ocena.przedmiot}"/></td>
+            <td class="td_item"><c:out value="${ocena.ocena}"/></td>
+            <td class="td_item"><c:out value="${ocena.dataDodania}"/></td>
         </tr>
     </c:forEach>
     </tbody>

@@ -31,4 +31,8 @@ public class Grade implements IBaseEntity{
     @ManyToOne()
     private Student student;
 
+    public Grade(Przedmiot przedmiot, double ocena) {
+        this.przedmiot = przedmiot;
+        this.ocena = ocena;
+    }
 }
