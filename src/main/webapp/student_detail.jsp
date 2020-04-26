@@ -64,6 +64,14 @@
             <td class="td_item"><c:out value="${ocena.przedmiot}"/></td>
             <td class="td_item"><c:out value="${ocena.ocena}"/></td>
             <td class="td_item"><c:out value="${ocena.dataDodania}"/></td>
+
+            <td class="td_item">
+                <a href="/grade/delete?gradeId=<c:out value="${ocena.id}"/>">Usun</a>
+            </td>
+            <td class="td_item">
+                <a href="/grade/edit?gradeId=<c:out value="${ocena.id}"/>">Edytuj</a>
+            </td>
+
         </tr>
     </c:forEach>
     </tbody>
