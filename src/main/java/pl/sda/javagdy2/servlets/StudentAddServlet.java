@@ -31,6 +31,9 @@ public class StudentAddServlet extends HttpServlet {
         EntityDao dao = new EntityDao();
         dao.saveOrUpdate(student);
         //response.sendRedirect("student_list.jsp");
-        resp.sendRedirect("/student/list");
+
+
+        resp.sendRedirect(getServletContext().getContextPath()+"/student/list");
+
     }
 }

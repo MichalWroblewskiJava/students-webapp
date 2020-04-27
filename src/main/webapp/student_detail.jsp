@@ -15,8 +15,8 @@
     <title>Student details</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/main.css">
+    <link href="${pageContext.request.contextPath}/https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main.css">
 </head>
 <body>
 <h1>Detailed information about a student with id: <c:out value="${requestScope.studentDetails.id}"/></h1>
@@ -43,7 +43,7 @@
 <br/>
 
 <%--Link do strony dodawania ocen - możemy przesłać dane o studencie.--%>
-<a href="/grade/add?studentId=<c:out value="${requestScope.studentDetails.id}"/>">Dodaj ocenę (temu studentowi)</a>
+<a href="${pageContext.request.contextPath}/grade/add?studentId=<c:out value="${requestScope.studentDetails.id}"/>">Dodaj ocenę (temu studentowi)</a>
 
 <br/>
 
@@ -66,10 +66,10 @@
             <td class="td_item"><c:out value="${ocena.dataDodania}"/></td>
 
             <td class="td_item">
-                <a href="/grade/delete?gradeId=<c:out value="${ocena.id}"/>">Usun</a>
+                <a href="${pageContext.request.contextPath}/grade/delete?gradeId=<c:out value="${ocena.id}"/>">Usun</a>
             </td>
             <td class="td_item">
-                <a href="/grade/edit?gradeId=<c:out value="${ocena.id}"/>">Edytuj</a>
+                <a href="${pageContext.request.contextPath}/grade/edit?gradeId=<c:out value="${ocena.id}"/>">Edytuj</a>
             </td>
 
         </tr>

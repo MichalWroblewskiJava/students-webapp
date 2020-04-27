@@ -31,7 +31,7 @@ public class GradeEditServlet extends HttpServlet {
             // jeśli exception będzie numberformatexception LUB nullpointerexception, to...
         } catch (NumberFormatException | NullPointerException ne) {
             // brak parametru = przekieruj na listę studentów
-            resp.sendRedirect("/student/list");
+            resp.sendRedirect(getServletContext().getContextPath()+"/student/list");
             return;
         }
     }
@@ -48,10 +48,10 @@ public class GradeEditServlet extends HttpServlet {
             grade.setOcena(ocena);
             grade.setPrzedmiot(przedmiot);
             dao.saveOrUpdate(grade);
-            resp.sendRedirect("/student/detail?identifier=" + grade.getStudent().getId());
+            resp.sendRedirect(getServletContext().getContextPath()+"/student/detail?identifier=" + grade.getStudent().getId());
         } catch (NumberFormatException | NullPointerException ne) {
             // brak parametru = przekieruj na listę studentów
-            resp.sendRedirect("/student/list");
+            resp.sendRedirect(getServletContext().getContextPath()+"/student/list");
             return;
         }
     }

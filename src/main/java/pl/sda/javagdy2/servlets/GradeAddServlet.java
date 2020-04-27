@@ -21,7 +21,7 @@ public class GradeAddServlet extends HttpServlet {
         // z tego względu przesłaliśmy sobie studenta (jego identyfikator) w parametrze zapytania
         String studentId = req.getParameter("studentId");
         if(studentId == null || studentId.isEmpty()){
-            resp.sendRedirect("/student/list");
+            resp.sendRedirect(getServletContext().getContextPath()+"/student/list");
             return;
         }
         req.setAttribute("student_identifier", studentId);
@@ -40,7 +40,7 @@ public class GradeAddServlet extends HttpServlet {
         String przedmiotString = req.getParameter("przedmiot");
         // jeśli którykolwiek z parametrów jest pusty, to przekieruj na stronę lista studentów
         if (ocenaString == null || przedmiotString == null || ocenaString.isEmpty() || przedmiotString.isEmpty()) {
-            resp.sendRedirect("/student/list");
+            resp.sendRedirect(getServletContext().getContextPath()+"/student/list");
             return;
         }
         Przedmiot gradePrzedmiot = Przedmiot.valueOf(przedmiotString);
@@ -50,7 +50,7 @@ public class GradeAddServlet extends HttpServlet {
         // brakuje nam wyłącznie stworzenia relacji.
         String studentId = req.getParameter("studentGraded");
         if (studentId == null || studentId.isEmpty()) {
-            resp.sendRedirect("/student/list");
+            resp.sendRedirect(getServletContext().getContextPath()+"/student/list");
             return;
         }
         Long studentIdLong = Long.parseLong(studentId);
@@ -61,6 +61,6 @@ public class GradeAddServlet extends HttpServlet {
         // zapisanie do bazy
         dao.saveOrUpdate(grade);
         // przekierowanie na stronę ze szczegółami studenta.
-        resp.sendRedirect("/student/detail?identifier=" + studentId);
+        resp.sendRedirect(getServletContext().getContextPath()+"/student/detail?identifier=" + studentId);
     }
 }

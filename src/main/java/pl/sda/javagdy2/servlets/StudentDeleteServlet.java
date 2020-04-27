@@ -18,7 +18,7 @@ public class StudentDeleteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String identToDelete = req.getParameter("identToDelete");
         if (identToDelete == null || identToDelete.isEmpty()) {
-            resp.sendRedirect("/student/list");
+            resp.sendRedirect(getServletContext().getContextPath()+"/student/list");
             return;
         }
 
@@ -26,7 +26,7 @@ public class StudentDeleteServlet extends HttpServlet {
         EntityDao dao = new EntityDao();
         Student student = dao.getById(Student.class, id);
         dao.delete(student);
-        resp.sendRedirect("/student/list");
+        resp.sendRedirect(getServletContext().getContextPath()+"/student/list");
     }
 
 

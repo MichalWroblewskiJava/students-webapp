@@ -19,7 +19,7 @@ public class StudentDetailServlet extends HttpServlet {
         // jeśli identyfikator (parametr) nie został podany, to
         // przekierowujemy użytkownika na listę studentów
         if(identifierString == null || identifierString.isEmpty()){
-            resp.sendRedirect("/student/list");
+            resp.sendRedirect(getServletContext().getContextPath()+"/student/list");
             return;
         }
         // parsowanie identyfikatora na long.
@@ -28,7 +28,7 @@ public class StudentDetailServlet extends HttpServlet {
         Student student = dao.getById(Student.class, identifier);
         // jeśli nie uda się odnaleźć takiego użytkownika
         if(student == null){
-            resp.sendRedirect("/student/list");
+            resp.sendRedirect(getServletContext().getContextPath()+"/student/list");
             return;
         }
         // załadowanie studenta jako atrybutu żeby mieć możliwość

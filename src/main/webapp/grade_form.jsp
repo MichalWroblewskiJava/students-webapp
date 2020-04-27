@@ -16,8 +16,8 @@
     <title>Grade Form</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/main.css">
+    <link href="${pageContext.request.contextPath}/https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main.css">
 </head>
 <body>
 <h1>Formularz oceny dla studenta: <c:out value="${requestScope.student_identifier}"/></h1>
@@ -31,7 +31,7 @@
 <%--gdy dodaje ocene, chce wysłać ją na servlet /grade/add--%>
 <%--gdy edytuje ocene, chce wysłać ją na servlet /grade/edit--%>
 <%--jeśli requestScope.gradeToEdit==null - to oznacza że nie edytuje oceny--%>
-<form action="${ requestScope.gradeToEdit == null ? '/grade/add' : '/grade/edit' }" method="post">
+<form action="${pageContext.request.contextPath}/${ requestScope.gradeToEdit == null ? '/grade/add' : '/grade/edit' }" method="post">
     <input type="hidden" name="studentGraded" value="<c:out value="${requestScope.student_identifier}"/>">
     <input type="hidden" name="editedGrade" value="${requestScope.gradeToEdit.id}">
     Przedmiot:

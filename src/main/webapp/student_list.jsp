@@ -15,15 +15,15 @@
     <title>Student list</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/main.css">
+    <link href="${pageContext.request.contextPath}/https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main.css">
 </head>
 <body>
 <h1>Student list</h1>
 <jsp:include page="/menu.jsp"/>
 <br>
 
-<form action="/student/delete" method="get">
+<form action="${pageContext.request.contextPath}/student/delete" method="get">
     Id: <input type="text" name="identToDelete"/>
     <input type="submit">
 </form>
@@ -50,10 +50,10 @@
             <td class="td_item"><c:out value="${student.pelnoletni}"/></td>
             <td class="td_item"><c:out value="${student.wzrost}"/></td>
             <td class="td_item">
-                <a href="/student/delete?identToDelete=<c:out value="${student.id}"/>">delete</a>
+                <a href="${pageContext.request.contextPath}/student/delete?identToDelete=<c:out value="${student.id}"/>">delete</a>
             </td>
             <td class="td_item">
-                <a href="/student/detail?identifier=<c:out value="${student.id}"/>">Szczegoly</a>
+                <a href="${pageContext.request.contextPath}/student/detail?identifier=<c:out value="${student.id}"/>">Szczegoly</a>
             </td>
         </tr>
     </c:forEach>

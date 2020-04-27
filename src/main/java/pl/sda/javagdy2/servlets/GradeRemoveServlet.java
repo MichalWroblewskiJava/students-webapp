@@ -33,6 +33,6 @@ public class GradeRemoveServlet extends HttpServlet {
         // dokonanie usunięcia
         dao.delete(ocena);
         // przekierowanie z powrotem na stronę ze szczeółowymi informacjami na temat studenta
-        resp.sendRedirect("/student/detail?identifier=" + ocena.getStudent().getId());
+        resp.sendRedirect(getServletContext().getContextPath()+"/student/detail?identifier=" + ocena.getStudent().getId());
     }
 }
